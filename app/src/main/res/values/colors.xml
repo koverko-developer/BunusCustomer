@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2da468</color>
+    <color name="colorPrimaryDark">#2DA468</color>
+    <color name="colorAccent">#2DA468</color>
+    <color name="color_bg">#b4d7c1</color>
+    <color name="btn">#C1DECC</color>
+    <color name="white">#ffffff</color>
+    <color name="red">#F23340</color>
+    <color name="text">#6E6E6E</color>
+    <color name="blue">#2196F3</color>
+    <color name="fiolet">#673AB7</color>
+    <color name="notactive">#A4A4A4</color>
+    <color name="black">#000000</color>
+    <color name="back_nav_lv">#ffffff</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="xz">#BDBDBD</color>
+
+
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="result_minor_text">#60000000</color>
+    <color name="result_points">#c099cc00</color>
+    <!-- Android standard ICS color -->
+    <color name="result_text">#60000000</color>
+    <color name="result_view">#ffffffff</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color>
+    <!-- Android standard ICS color -->
+    <color name="qr_code_view_mask">#60000000</color>
+    <color name="qr_code_view_corner">#FF2A7C3B</color>
+    <color name="qr_code_view_border">#ffffffff</color>
+
+
+</resources>

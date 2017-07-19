@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="organizationObjectRegs"
+            type="com.example.x.bunuscustomer.classes.OrganizationsObject"/>
+        <variable
+            name="test"
+            type="com.example.x.bunuscustomer.classes.TestObject"/>
+
+
+        <variable
+            name="spinnerLoyality"
+            type="com.example.x.bunuscustomer.classes.Model"/>
+
+        <variable
+            name="spinnerCategory"
+            type="com.example.x.bunuscustomer.classes.SpinnerCategory"/>
+
+        <variable
+            name="spinnerTime1"
+            type="com.example.x.bunuscustomer.classes.SpinnerTime"/>
+        <variable
+            name="spinnerTime2"
+            type="com.example.x.bunuscustomer.classes.SpinnerTime"/>
+
+        <variable
+            name="handlerRegistration"
+            type="com.example.x.bunuscustomer.handlers.RegistrationHandler"/>
+
+        <variable
+            name="textSpinner"
+            type="com.example.x.bunuscustomer.classes.TextSpinner"/>
+
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/editTextINDEX"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableTint="@android:color/background_dark"
+                        android:hint="Укажите индекс*"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:text="@={organizationObjectRegs.index}"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="6" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/editTextCITY"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableTint="@android:color/background_dark"
+                        android:text="@={organizationObjectRegs.city}"
+                        android:hint="Укажите город*"
+                        android:singleLine="true" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/editTextSTREET"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableTint="@android:color/background_dark"
+                        android:hint="Укажите улицу*"
+                        android:text="@={organizationObjectRegs.street}"
+                        android:singleLine="true" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/editTextHOME"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableTint="@android:color/background_dark"
+                            android:hint="Строение*"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:text="@={organizationObjectRegs.home}" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/editTextKV"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:drawableTint="@android:color/background_dark"
+                            android:hint="Офис"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:text="@={organizationObjectRegs.kv}" />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text='Например: ООО "Шанс", ИП "НИК"'
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/editTextNAME"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTint="@android:color/background_dark"
+                    android:text="@={organizationObjectRegs.name}"
+                    android:hint="Название организации*"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:drawableTint="@android:color/background_dark"
+                        android:hint="Укажите УНП*"
+                        android:inputType="phone"
+                        android:singleLine="true"
+                        android:text="@={organizationObjectRegs.unp}"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="6" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <EditText
+
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:layout_marginTop="16dp"
+                        android:drawableTint="@android:color/background_dark"
+                        android:text="@={organizationObjectRegs.date}"
+                        android:hint="Дата регистрации*"
+                        android:singleLine="true" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Выберите категорию*"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:entries="@{spinnerCategory.type}"
+                    android:pointerIcon="arrow"
+                    android:selectedItemPosition="@={spinnerCategory.position}">
+
+                </android.support.v7.widget.AppCompatSpinner>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"></LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Время работы*"
+                android:textColor="@color/colorPrimary"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@{spinnerTime1.type}"
+                        android:selectedItemPosition="@={spinnerTime1.position}"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Начало"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <Spinner
+                        android:id="@+id/spinner22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@{spinnerTime2.type}"
+                        android:selectedItemPosition="@={spinnerTime2.position}"
+                        android:layout_marginTop="4dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="2px"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/colorPrimaryDark"
+                        android:orientation="vertical"></LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Окончание"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editTextEMAIL"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTint="@android:color/background_dark"
+                    android:hint="E-mail*"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:text="@={organizationObjectRegs.email}"
+                    android:visibility="@{organizationObjectRegs.isPass ? View.VISIBLE : View.GONE}" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <EditText
+                    android:id="@+id/editTextPASS1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTint="@android:color/background_dark"
+                    android:hint="Введите пароль*"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:text="@={organizationObjectRegs.password2}" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <EditText
+                    android:id="@+id/editTextPass2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTint="@android:color/background_dark"
+                    android:hint="Повторите пароль*"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:text="@={organizationObjectRegs.password1}" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Например: +375297402740"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/editTextPHONE"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTint="@android:color/background_dark"
+                    android:hint="Телефон*"
+                    android:inputType="phone"
+                    android:singleLine="true"
+                    android:text="@={organizationObjectRegs.phone}" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView34"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+
+                    android:text="Лояльность*"
+                    android:textSize="12sp"></TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                    android:drawableTint="@color/colorAccent"
+                    android:gravity="center_vertical"
+                    android:padding="4dp"
+                    android:text="@{organizationObjectRegs.loyalty_text}"
+                    android:onClick="@{handlerRegistration.onClickTextSpinner}"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"></LinearLayout>
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{organizationObjectRegs.loyalty_is ? View.VISIBLE : View.GONE}"
+                >
+
+                <TextView
+                    android:id="@+id/textView82"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Например: 5"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/editTextProcent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTint="@android:color/background_dark"
+                    android:hint="Укажите процент скидки*"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:text="@={organizationObjectRegs.fixed_price}" />
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+
+                android:id="@+id/stepsLin"
+                android:visibility="@{organizationObjectRegs.loyalty_is ? View.GONE : View.VISIBLE}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView349"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Выберите периодичность*"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/linSteps"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:onClick="@{handlerRegistration.onClickStep}"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="?attr/colorButtonNormal"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relativeSteps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginBottom="4dp"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/textStep1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="18dp"
+                                    android:layout_weight="1"
+                                    android:text="@{organizationObjectRegs.buy1}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:id="@+id/textStep2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_weight="1"
+                                    android:text="@{organizationObjectRegs.buy2}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:id="@+id/textStep3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_weight="1"
+                                    android:text="@{organizationObjectRegs.buy3}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="22sp" />
+
+                                <TextView
+                                    android:id="@+id/textStep4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="12dp"
+                                    android:layout_weight="1"
+                                    android:text="@{organizationObjectRegs.buy4}"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="22sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="8dp"
+                                android:orientation="horizontal"
+                                android:weightSum="4">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="right">
+
+                                    <ProgressBar
+                                        android:id="@+id/progressStep1"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="4dp"
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentTop="false"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="40dp"
+                                        android:layout_toEndOf="@+id/textViewStep1"
+                                        android:layout_toRightOf="@+id/textViewStep1"
+                                        android:progressTint="@color/colorAccent" />
+
+                                    <TextView
+                                        android:id="@+id/textViewStep1"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_alignParentTop="true"
+                                        android:background="@drawable/circle_tv"
+                                        android:gravity="center"
+                                        android:text="@{organizationObjectRegs.proc1}"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp" />
+
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+
+                                    <ProgressBar
+                                        android:id="@+id/progressStep2"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="4dp"
+                                        android:layout_alignParentEnd="false"
+                                        android:layout_alignParentLeft="false"
+                                        android:layout_alignParentRight="false"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="40dp"
+                                        android:progress="0"
+                                        android:progressTint="@color/colorAccent" />
+
+                                    <TextView
+                                        android:id="@+id/textViewStep2"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+
+                                        android:layout_alignParentLeft="true"
+                                        android:layout_alignParentStart="true"
+
+                                        android:background="@drawable/circle_tv"
+                                        android:gravity="center"
+                                        android:text="@{organizationObjectRegs.proc2}"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="right">
+
+                                    <ProgressBar
+                                        android:id="@+id/progressStep3"
+                                        style="?android:attr/progressBarStyleHorizontal"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="4dp"
+                                        android:layout_alignParentEnd="false"
+                                        android:layout_alignParentLeft="false"
+                                        android:layout_alignParentRight="false"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginLeft="40dp"
+                                        android:progress="0"
+                                        android:progressTint="@color/colorAccent" />
+
+                                    <TextView
+                                        android:id="@+id/textViewStep3"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+
+                                        android:layout_alignParentLeft="true"
+
+                                        android:layout_centerHorizontal="true"
+                                        android:background="@drawable/circle_tv"
+                                        android:gravity="center"
+                                        android:text="@{organizationObjectRegs.proc3}"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="left">
+
+                                    <TextView
+                                        android:id="@+id/textViewStep4"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+
+
+                                        android:background="@drawable/circle_tv"
+                                        android:gravity="center"
+                                        android:text="@{organizationObjectRegs.proc4}"
+                                        android:textColor="@color/white"
+                                        android:textSize="14sp" />
+
+                                </RelativeLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView343"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Клиенты за вознаграждени*"
+                    android:textSize="12sp"></TextView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:onClick="@{handlerRegistration.onClickTextFriend}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="8" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Делиться с друзьями"
+                        android:textColor="@color/cardview_dark_background" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{organizationObjectRegs.isFriend ? View.VISIBLE : View.GONE}"
+                    android:text="Укажите стоимость вознаграждения, 1 балл = 1 BYN*"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="10sp" />
+
+                <EditText
+                    android:id="@+id/editText2"
+                    android:visibility="@{organizationObjectRegs.isFriend ? View.VISIBLE : View.GONE}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:text="@={organizationObjectRegs.friend_frice}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    android:visibility="gone"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:id="@+id/textView342"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Добавить логотип*"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp"
+                    android:drawableRight="@drawable/ic_add_a_photo_black_24dp"
+                    android:gravity="center_vertical"
+                    android:onClick="@{handlerRegistration.onClickTextSelect}"
+                    android:text="Выбрать фото" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Я принимаю условия оферты*"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="6">
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{handlerRegistration.onClickTextOferta}"
+                            android:layout_weight="4" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:text="Оферта" />
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_weight="1"
+                        android:onClick="@{handlerRegistration.onClickButton}"
+                        android:background="@drawable/btn_auth"
+                        android:text="ОЗНАКОМИТЬСЯ"
+                        android:textColor="@color/back_nav_lv"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="@dimen/btn_height"
+                android:layout_height="@dimen/btn_wifth"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginTop="16dp"
+
+                android:background="@{organizationObjectRegs.isOferta ? @drawable/btn_auth : @drawable/btn_auth_no}"
+                android:enabled="@{organizationObjectRegs.isOferta ? true : false}"
+                android:onClick="@{handlerRegistration.onClickReg}"
+                android:text="ГОТОВО"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</layout>
