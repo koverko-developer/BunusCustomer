@@ -6,6 +6,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -91,6 +92,8 @@ public class OrganizationsObject extends BaseObservable {
 
         unp = new ObservableField<>("");
         date = new ObservableField<>("");
+
+
 
 
 
@@ -364,5 +367,8 @@ public class OrganizationsObject extends BaseObservable {
         date.set(pdate.get());
     }
 
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+       String s1 = "";
+    }
 
 }

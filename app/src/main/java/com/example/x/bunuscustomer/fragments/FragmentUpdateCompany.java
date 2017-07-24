@@ -408,7 +408,7 @@ public class FragmentUpdateCompany extends Fragment{
                     organizationsObjectReg.setProc3(new ObservableField<String>(infoCompany.getMycompany().getLoyaltyStep().getStep3()));
                     organizationsObjectReg.setProc4(new ObservableField<String>(infoCompany.getMycompany().getLoyaltyStep().getStep4()));
                 }
-                if(Integer.parseInt(infoCompany.getMycompany().getInvitePrice())==0){}
+                if(Double.parseDouble(infoCompany.getMycompany().getInvitePrice())==0){}
                 else {
                     organizationsObjectReg.setIsFriend(new ObservableBoolean(false));
                     organizationsObjectReg.setFriend_frice(new ObservableField<String>(infoCompany.getMycompany().getInvitePrice()));
