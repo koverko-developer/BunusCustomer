@@ -190,7 +190,7 @@
                     android:layout_marginTop="16dp"
                     android:drawableTint="@android:color/background_dark"
                     android:hint="Краткое описание"
-                    android:maxLength="30"
+                    android:maxLength="80"
                     android:singleLine="true"
                     android:text="@={organizationObjectRegs.info}" />
 
