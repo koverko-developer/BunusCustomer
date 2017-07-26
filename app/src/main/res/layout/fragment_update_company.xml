@@ -178,6 +178,22 @@
                     android:hint="Название организации"
                     android:singleLine="true"
                     android:text="@={organizationObjectRegs.name}" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/editTextNAM"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawableTint="@android:color/background_dark"
+                    android:hint="Краткое описание"
+                    android:maxLength="30"
+                    android:singleLine="true"
+                    android:text="@={organizationObjectRegs.info}" />
 
             </android.support.design.widget.TextInputLayout>
 

@@ -45,7 +45,8 @@ public interface Api {
                               @Field("step3") String step3,
                               @Field("step4") String step4,
                               @Field("unp") String unp,
-                              @Field("date") String date
+                              @Field("date") String date,
+                              @Field("info") String info
                               )
             ;
 
@@ -76,7 +77,8 @@ public interface Api {
                               @Field("step3") String step3,
                               @Field("step4") String step4,
                               @Field("id_company") String id_company,
-                              @Field("token") String token
+                              @Field("token") String token,
+                              @Field("info") String info
     )
             ;
 

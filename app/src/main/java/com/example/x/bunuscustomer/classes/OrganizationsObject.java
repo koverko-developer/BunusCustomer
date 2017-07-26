@@ -53,6 +53,8 @@ public class OrganizationsObject extends BaseObservable {
     private ObservableField<String> unp;
     private ObservableField<String> date;
 
+    private ObservableField<String> info;
+
     public OrganizationsObject(){
         index = new ObservableField<>("");
         city = new ObservableField<>("");
@@ -93,7 +95,7 @@ public class OrganizationsObject extends BaseObservable {
         unp = new ObservableField<>("");
         date = new ObservableField<>("");
 
-
+        info = new ObservableField<>();
 
 
 
@@ -365,6 +367,14 @@ public class OrganizationsObject extends BaseObservable {
 
     public void setDate(ObservableField<String> pdate) {
         date.set(pdate.get());
+    }
+
+    public ObservableField<String> getInfo() {
+        return info;
+    }
+
+    public void setInfo(ObservableField<String> pinfo) {
+        info.set(pinfo.get());
     }
 
     public void onTextChanged(CharSequence s, int start, int before, int count) {

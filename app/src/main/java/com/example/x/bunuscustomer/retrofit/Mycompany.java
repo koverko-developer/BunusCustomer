@@ -50,6 +50,9 @@ public class Mycompany {
     @SerializedName("invite_price")
     @Expose
     private String invitePrice;
+    @SerializedName("info")
+    @Expose
+    private String info;
     @SerializedName("image")
     @Expose
     private String image;
@@ -233,4 +236,11 @@ public class Mycompany {
         this.statusNews = statusNews;
     }
 
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 }

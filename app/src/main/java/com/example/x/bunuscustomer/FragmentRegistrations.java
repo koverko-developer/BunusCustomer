@@ -218,23 +218,24 @@ public class FragmentRegistrations extends Fragment {
                    organizationsObjectReg.getProc3().get(),
                    organizationsObjectReg.getProc4().get(),
                    organizationsObjectReg.getUnp().get(),
-                   organizationsObjectReg.getDate().get()
+                   organizationsObjectReg.getDate().get(),
+                   organizationsObjectReg.getInfo().get()
 
            ).enqueue(new Callback<Otvet>() {
                @Override
                public void onResponse(Call<Otvet> call, Response<Otvet> response) {
                    activity.progress();
                    Otvet otvet = response.body();
-                   if(otvet.getCode().equals("203")) activity.toast("Компания с таким e-mail уже существует");
-                   else {
+                   if(otvet.getCode().equals("201")){
                        activity.toast("Ваша компания отправлена на модерацию.");
                        startActivity(new Intent(activity, LoginActivity.class));
-                   }
+                   }else activity.toast(response.body().getMessage());
+
                }
 
                @Override
                public void onFailure(Call<Otvet> call, Throwable t) {
-                    activity.toast("Проверьте подключение к интернету...");
+                   activity.toast("Проверьте подключение к интернету...");
                    activity.progress();
                }
            });

@@ -246,7 +246,8 @@ public class FragmentUpdateCompany extends Fragment{
                     organizationsObjectReg.getProc2().get(),
                     organizationsObjectReg.getProc3().get(),
                     organizationsObjectReg.getProc4().get(),
-                    myId,myToken
+                    myId,myToken,
+                    organizationsObjectReg.getInfo().get()
 
 
             ).enqueue(new Callback<Otvet>() {
@@ -370,6 +371,7 @@ public class FragmentUpdateCompany extends Fragment{
                 organizationsObjectReg.setHome(new ObservableField<String>(infoCompany.getMycompany().getCity().getBuild()));
                 organizationsObjectReg.setKv(new ObservableField<String>(infoCompany.getMycompany().getCity().getOffice()));
                 organizationsObjectReg.setName(new ObservableField<String>(infoCompany.getMycompany().getName()));
+                organizationsObjectReg.setInfo(new ObservableField<String>(infoCompany.getMycompany().getInfo()));
                 //spinnerCategory.setPosition(new ObservableInt(Integer.parseInt(infoCompany.getMycompany().getCategoryId().g)));
                 organizationsObjectReg.setEmail(new ObservableField<String>(infoCompany.getMycompany().getEmail()));
                 spinnerCategory.setPosition(new ObservableInt(Integer.parseInt(infoCompany.getMycompany().getCategoryId().getId())));
