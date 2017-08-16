@@ -139,9 +139,7 @@ public class LoginActivity extends AppCompatActivity {
 
       try{
           String ss = pass.getText().toString();
-          ss = ss.toLowerCase();
           String s = md5(ss);
-          s = s.toLowerCase();
           App.getApi().login(login.getText().toString(), s).enqueue(new Callback<Otvet>() {
               @Override
               public void onResponse(Call<Otvet> call, Response<Otvet> response) {
