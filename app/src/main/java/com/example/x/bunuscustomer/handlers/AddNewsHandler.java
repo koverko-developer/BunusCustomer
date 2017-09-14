@@ -18,7 +18,8 @@ public class AddNewsHandler {
     }
 
     public void onClickPhoto(View v){
-        fragmentAddNews.selectImage();
+        //fragmentAddNews.selectImage();
+        fragmentAddNews.showDialogSelectImage();
     }
     public void onClickUpdate(View v){
         fragmentAddNews.addNews();

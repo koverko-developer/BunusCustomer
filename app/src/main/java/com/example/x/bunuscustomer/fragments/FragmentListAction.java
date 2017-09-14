@@ -156,13 +156,13 @@ public class FragmentListAction extends Fragment {
             img2.setVisibility(View.GONE);
             Bitmap bitmap;
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), image);
+                bitmap = MediaStore.Images.Media.getBitmap(this.getActivity().getContentResolver(), image);
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
                 //compress the image to jpg format
                 bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
                 String encodeImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
                 bitmapS = encodeImage;
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -253,6 +253,8 @@ public class FragmentListAction extends Fragment {
         dialog.show();
 
     }
+
+
 
     public void deleteFromList(final int position){
 

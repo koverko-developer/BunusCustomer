@@ -1,6 +1,8 @@
 package com.example.x.bunuscustomer.fragments;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,14 +13,17 @@ import android.databinding.ViewDataBinding;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +36,7 @@ import com.example.x.bunuscustomer.retrofit.App;
 import com.example.x.bunuscustomer.retrofit.Otvet;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 
 import retrofit2.Call;
@@ -60,6 +66,12 @@ public class FragmentAddNews extends Fragment {
     private SharedPreferences mSettings;
     String myId,myToken;
 
+    private static final int TAKE_PICTURE = 1;
+    private Uri imageUri;
+
+
+    Dialog dialogSelectImage = null;
+
     public FragmentAddNews(AddNewsActivity addNewsActivity){
         this.addNewsActivity = addNewsActivity;
     }
@@ -86,6 +98,15 @@ public class FragmentAddNews extends Fragment {
     public void selectImage(){
         Intent gallaryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(gallaryIntent, RESULT_SELECT_IMAGE);
+    }
+
+    public void takePhoto() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File photo = new File(Environment.getExternalStorageDirectory(),  "Pic.jpg");
+        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                Uri.fromFile(photo));
+        imageUri = Uri.fromFile(photo);
+        startActivityForResult(intent, TAKE_PICTURE);
     }
 
     @Override
@@ -118,34 +139,66 @@ public class FragmentAddNews extends Fragment {
 //            imageView.setImageURI(image);
 //            imageViewOb.setImageURI(image);
 
+        }else if(requestCode==TAKE_PICTURE){
+            if (resultCode == Activity.RESULT_OK) {
+                Uri selectedImage = imageUri;
+                object.setBitmap(new ObservableField<Uri>(selectedImage));
+                object.setIsBitmap(new ObservableBoolean(true));
+                this.getActivity().getContentResolver().notifyChange(selectedImage, null);
+                //ImageView imageView = (ImageView) v.findViewById(R.id.ImageView);
+                ContentResolver cr = this.getActivity().getContentResolver();
+                Bitmap bitmap;
+                try {
+                    bitmap = android.provider.MediaStore.Images.Media
+                            .getBitmap(cr, selectedImage);
+
+                    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                    //compress the image to jpg format
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream);
+            /*
+            * encode image to base64 so that it can be picked by saveImage.php file
+            * */
+                    String encodeImage = Base64.encodeToString(byteArrayOutputStream.toByteArray(),Base64.DEFAULT);
+
+                    object.setImg(new ObservableField<String>(encodeImage));
+                } catch (Exception e) {
+                    Toast.makeText(this.getActivity(), "Failed to load", Toast.LENGTH_SHORT)
+                            .show();
+                    Log.e("Camera", e.toString());
+                }
+            }
         }
     }
 
     public void addNews(){
 
-        object.setIsProgress(new ObservableBoolean(true));
+        try {
+            object.setIsProgress(new ObservableBoolean(true));
 
-        App.getApi().addNews(object.getTime().get(),
-                myId,
-                object.getName().get(),
-                object.getText().get(),
-                object.getImg().get()).enqueue(new Callback<Otvet>() {
-            @Override
-            public void onResponse(Call<Otvet> call, Response<Otvet> response) {
-                object.setIsProgress(new ObservableBoolean(false));
-                if(Integer.parseInt(response.body().getCode())==201) Toast.makeText(addNewsActivity, response.body().getMessage(),Toast.LENGTH_SHORT).show();
-                else if(Integer.parseInt(response.body().getCode())==202) {
-                    showDialog("2");
-                }else Toast.makeText(addNewsActivity, response.body().getMessage(),Toast.LENGTH_SHORT).show();
+            App.getApi().addNews(object.getTime().get(),
+                    myId,
+                    object.getName().get(),
+                    object.getText().get(),
+                    object.getImg().get()).enqueue(new Callback<Otvet>() {
+                @Override
+                public void onResponse(Call<Otvet> call, Response<Otvet> response) {
+                    object.setIsProgress(new ObservableBoolean(false));
+                    if(Integer.parseInt(response.body().getCode())==201) Toast.makeText(addNewsActivity, response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                    else if(Integer.parseInt(response.body().getCode())==202) {
+                        showDialog("2");
+                    }else Toast.makeText(addNewsActivity, response.body().getMessage(),Toast.LENGTH_SHORT).show();
 
-            }
+                }
 
-            @Override
-            public void onFailure(Call<Otvet> call, Throwable t) {
-                object.setIsProgress(new ObservableBoolean(false));
-                Toast.makeText(addNewsActivity, "Ваша новость отправлена на модерацию...",Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<Otvet> call, Throwable t) {
+                    object.setIsProgress(new ObservableBoolean(false));
+                    Toast.makeText(addNewsActivity, "Ваша новость отправлена на модерацию...",Toast.LENGTH_SHORT).show();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void showDialog(String s){
@@ -194,6 +247,33 @@ public class FragmentAddNews extends Fragment {
                 Toast.makeText(addNewsActivity,"Проверьте подключение к инткрнету...",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void showDialogSelectImage(){
+
+        dialogSelectImage = new Dialog(this.getActivity());
+        dialogSelectImage.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogSelectImage.setContentView(R.layout.alert_select_image);
+
+        TextView tvGalery = (TextView) dialogSelectImage.findViewById(R.id.select_image_galery);
+        TextView tvPhotos = (TextView) dialogSelectImage.findViewById(R.id.select_image_photos);
+
+        tvGalery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              selectImage();
+            }
+        });
+
+        tvPhotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                takePhoto();
+            }
+        });
+
+        dialogSelectImage.show();
+
     }
 
 }
